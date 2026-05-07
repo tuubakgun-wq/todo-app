@@ -7,8 +7,53 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Yapılacaklar</h1>
+
+  <!-- Auth ekranı -->
+  <div class="auth-wrapper" id="authWrapper">
+    <div class="auth-card">
+      <h1>Yapılacaklar</h1>
+
+      <div class="auth-tabs" id="authTabs">
+        <button class="tab-btn active" data-tab="login">Giriş Yap</button>
+        <button class="tab-btn" data-tab="register">Kayıt Ol</button>
+      </div>
+
+      <!-- Giriş formu -->
+      <form id="loginForm" class="auth-form">
+        <input type="email" id="loginEmail" placeholder="E-posta" required>
+        <input type="password" id="loginPassword" placeholder="Şifre" required>
+        <button type="submit">Giriş Yap</button>
+        <p class="auth-error" id="loginError"></p>
+      </form>
+
+      <!-- Kayıt formu -->
+      <form id="registerForm" class="auth-form hidden">
+        <input type="email" id="registerEmail" placeholder="E-posta" required>
+        <input type="password" id="registerPassword" placeholder="Şifre (min. 6 karakter)" minlength="6" required>
+        <button type="submit">Kayıt Ol</button>
+        <p class="auth-error" id="registerError"></p>
+      </form>
+
+      <!-- OTP doğrulama formu -->
+      <form id="otpForm" class="auth-form hidden">
+        <p class="otp-info" id="otpInfo"></p>
+        <input type="text" id="otpCode" placeholder="6 haneli kod" maxlength="6" inputmode="numeric" required>
+        <button type="submit">Doğrula</button>
+        <button type="button" id="resendBtn" class="btn-secondary">Tekrar Gönder</button>
+        <p class="auth-error" id="otpError"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Todo ekranı -->
+  <div class="container hidden" id="appWrapper">
+    <div class="app-header">
+      <h1>Yapılacaklar</h1>
+      <div class="user-info">
+        <span id="currentUserEmail"></span>
+        <button id="logoutBtn">Çıkış</button>
+      </div>
+    </div>
 
     <div class="input-area">
       <input type="text" id="todoInput" placeholder="Yeni görev ekle..." autocomplete="off">
@@ -23,7 +68,7 @@
 
     <ul id="todoList"></ul>
 
-    <div class="footer" id="footer">
+    <div class="footer hidden" id="footer">
       <span id="remainingCount"></span>
       <button id="clearCompleted">Tamamlananları Sil</button>
     </div>

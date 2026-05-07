@@ -14,6 +14,125 @@ body {
   padding: 40px 16px;
 }
 
+.hidden { display: none !important; }
+
+/* ── Auth ── */
+.auth-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 36px 32px 28px;
+}
+
+.auth-card h1 {
+  font-size: 1.8rem;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #999;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  color: #6c63ff;
+  border-bottom-color: #6c63ff;
+  font-weight: 600;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-form input {
+  padding: 11px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-form input:focus {
+  border-color: #6c63ff;
+}
+
+.auth-form button[type="submit"] {
+  padding: 11px;
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.auth-form button[type="submit"]:hover {
+  background: #574fd6;
+}
+
+.auth-form button[type="submit"]:disabled {
+  background: #b0aaf5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  padding: 9px;
+  background: none;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: #6c63ff;
+  color: #6c63ff;
+}
+
+.otp-info {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.auth-error {
+  font-size: 0.85rem;
+  color: #e74c3c;
+  min-height: 18px;
+  text-align: center;
+}
+
+/* ── App ── */
 .container {
   background: #fff;
   border-radius: 12px;
@@ -23,11 +142,51 @@ body {
   padding: 32px 28px 24px;
 }
 
-h1 {
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.app-header h1 {
   font-size: 1.8rem;
   color: #1a1a2e;
-  margin-bottom: 24px;
   letter-spacing: -0.5px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.user-info span {
+  font-size: 0.8rem;
+  color: #999;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#logoutBtn {
+  padding: 6px 14px;
+  background: none;
+  border: 2px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+#logoutBtn:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
 }
 
 .input-area {
@@ -46,9 +205,7 @@ h1 {
   transition: border-color 0.2s;
 }
 
-.input-area input:focus {
-  border-color: #6c63ff;
-}
+.input-area input:focus { border-color: #6c63ff; }
 
 .input-area button {
   padding: 10px 20px;
@@ -61,9 +218,7 @@ h1 {
   transition: background 0.2s;
 }
 
-.input-area button:hover {
-  background: #574fd6;
-}
+.input-area button:hover { background: #574fd6; }
 
 .filters {
   display: flex;
@@ -89,10 +244,7 @@ h1 {
   background: #f0eeff;
 }
 
-ul#todoList {
-  list-style: none;
-  min-height: 40px;
-}
+ul#todoList { list-style: none; min-height: 40px; }
 
 .todo-item {
   display: flex;
@@ -104,9 +256,7 @@ ul#todoList {
   border-radius: 6px;
 }
 
-.todo-item:hover {
-  background: #fafafa;
-}
+.todo-item:hover { background: #fafafa; }
 
 .todo-item input[type="checkbox"] {
   width: 18px;
@@ -153,9 +303,7 @@ ul#todoList {
   color: #999;
 }
 
-.footer.hidden {
-  display: none;
-}
+.footer.hidden { display: none; }
 
 #clearCompleted {
   background: none;
@@ -167,9 +315,7 @@ ul#todoList {
   transition: color 0.2s;
 }
 
-#clearCompleted:hover {
-  color: #e74c3c;
-}
+#clearCompleted:hover { color: #e74c3c; }
 
 .empty-msg {
   text-align: center;
