@@ -278,6 +278,19 @@ async function deleteTodo(id) {
   render();
 }
 
+async function updateTodoText(id, text) {
+  text = text.trim();
+  if (!text) return;
+  const res = await fetch(`${API}?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: todoHeaders(),
+    body: JSON.stringify({ text }),
+  });
+  const [updated] = await res.json();
+  todos = todos.map(t => t.id === id ? updated : t);
+  render();
+}
+
 async function clearCompletedTodos() {
   await fetch(`${API}?completed=eq.true&user_id=eq.${session.user.id}`, {
     method: 'DELETE',
@@ -314,13 +327,19 @@ function render() {
       span.className = 'todo-text';
       span.textContent = todo.text;
 
+      const editBtn = document.createElement('button');
+      editBtn.className = 'edit-btn';
+      editBtn.textContent = '✎';
+      editBtn.title = 'Düzenle';
+      editBtn.addEventListener('click', () => startEdit(todo.id, span, editBtn));
+
       const delBtn = document.createElement('button');
       delBtn.className = 'delete-btn';
       delBtn.textContent = '✕';
       delBtn.title = 'Sil';
       delBtn.addEventListener('click', () => deleteTodo(todo.id));
 
-      li.append(checkbox, span, delBtn);
+      li.append(checkbox, span, editBtn, delBtn);
       todoList.appendChild(li);
     });
   }
@@ -328,6 +347,33 @@ function render() {
   const activeCount = todos.filter(t => !t.completed).length;
   remainingCount.textContent = `${activeCount} görev kaldı`;
   footer.classList.toggle('hidden', todos.length === 0);
+}
+
+function startEdit(id, span, editBtn) {
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'edit-input';
+  input.value = span.textContent;
+  span.replaceWith(input);
+  editBtn.textContent = '✓';
+  editBtn.title = 'Kaydet';
+  input.focus();
+
+  const save = () => {
+    const newText = input.value.trim();
+    if (newText && newText !== span.textContent) {
+      updateTodoText(id, newText);
+    } else {
+      render();
+    }
+  };
+
+  editBtn.onclick = save;
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') save();
+    if (e.key === 'Escape') render();
+  });
+  input.addEventListener('blur', () => setTimeout(save, 150));
 }
 
 // ── Todo event listeners ──────────────────────────────────

@@ -278,6 +278,7 @@ ul#todoList { list-style: none; min-height: 40px; }
   color: #aaa;
 }
 
+.todo-item .edit-btn,
 .todo-item .delete-btn {
   background: none;
   border: none;
@@ -287,11 +288,27 @@ ul#todoList { list-style: none; min-height: 40px; }
   padding: 2px 6px;
   border-radius: 4px;
   transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.todo-item .edit-btn:hover {
+  color: #6c63ff;
+  background: #f0eeff;
 }
 
 .todo-item .delete-btn:hover {
   color: #e74c3c;
   background: #fff0f0;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 4px 8px;
+  border: 2px solid #6c63ff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  color: #333;
 }
 
 .footer {
